@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F4ECF7;
+            color: #4A235A;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #E8DAEF;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(74, 35, 90, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #4A235A;
+            font-weight: 600;
+        }
+        .weather-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .input-section, .result-section {
+            padding: 20px;
+            background-color: #F4ECF7;
+            border-radius: 5px;
+        }
+        .input-section {
+            display: flex;
+            flex-direction: column;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .input-group label {
+            width: 120px;
+            font-weight: 500;
+            color: #4A235A;
+        }
+        input, button {
+            padding: 10px;
+            border: 1px solid #A569BD;
+            border-radius: 4px;
+            font-family: 'Poppins', sans-serif;
+        }
+        input {
+            flex-grow: 1;
+            background-color: #F4ECF7;
+            color: #4A235A;
+        }
+        input::placeholder {
+            color: #A569BD;
+        }
+        button {
+            background-color: #6C3483;
+            color: #F4ECF7;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: 500;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #4A235A;
+        }
+        .result-section {
+            min-height: 200px;
+            border: 1px solid #A569BD;
+        }
+        @media (max-width: 768px) {
+            .weather-grid {
+                grid-template-columns: 1fr;
+            }
+            .input-group {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .input-group label {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather App</h1>
+        <div class="weather-grid">
+            <div class="input-section">
+                <form method="POST">
+                    <div class="input-group">
+                        <label for="city">City:</label>
+                        <input type="text" id="city" name="city" placeholder="Enter city" value="{{ city }}">
+                    </div>
+                    <div class="input-group">
+                        <label for="countryCode">Country Code:</label>
+                        <input type="text" id="countryCode" name="countryCode" placeholder="Enter country code" value="{{ country_code }}">
+                    </div>
+                    <button type="submit">Get Weather</button>
+                </form>
+            </div>
+            <div class="result-section" id="result">
+                {% if climate and temperature %}
+                    <p>Climate: {{ climate }}</p>
+                    <p>Temperature: {{ temperature }}°C</p>
+                {% elif climate %}
+                    <p>{{ climate }}</p>
+                {% else %}
+                    <p>Weather information will be displayed here.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
