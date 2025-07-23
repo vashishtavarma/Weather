@@ -1,9 +1,13 @@
 import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 lat = 12.9716
 lon = 77.5946
 
-API_KEY = "23d0cd1e29d9413578b60c9a48fd30e3"
+API_KEY = os.getenv("OPENWEATHER_API_KEY")
 
 URL = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API_KEY}"
 

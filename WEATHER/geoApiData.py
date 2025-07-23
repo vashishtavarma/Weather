@@ -1,9 +1,13 @@
 import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 city = "Bangalore"
 countryCode = "IN"
 
-API_KEY = "23d0cd1e29d9413578b60c9a48fd30e3"
+API_KEY = os.getenv("OPENWEATHER_API_KEY")
 
 URL = f"http://api.openweathermap.org/geo/1.0/direct?q={city},{countryCode}&limit=1&appid={API_KEY}"
 

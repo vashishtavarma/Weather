@@ -1,7 +1,11 @@
 import requests
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # OpenWeatherMap API Key
-API_KEY = "23d0cd1e29d9413578b60c9a48fd30e3"
+API_KEY = os.getenv("OPENWEATHER_API_KEY")
 
 city = input("Enter the city: ").title()
 countryCode = input("Enter the country code (e.g., IN for India): ").upper()
